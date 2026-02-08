@@ -79,31 +79,31 @@ _tx_initialize_low_level:
     sw      t0, 0(t1)                               // Save unused memory address
 
 #ifdef __riscv_flen
-    fscsr x0
+    fscsr x0                                        // Clear FP control/status register
 #endif
 
     ret
 
-    /* Define the actual timer interrupt/exception handler.  */
+/* Timer Interrupt Handler Note:
+   Platform-specific implementations must provide their own timer ISR.
+   The timer interrupt handler should follow this execution flow:
 
-    .global  timer1_plic_IRQHandler
-timer1_plic_IRQHandler:
+   1. Disable interrupts (if not done by hardware exception entry)
+   2. Allocate interrupt stack frame (65*4 bytes with FP, 32*4 bytes without)
+   3. Save RA (x1) on the stack at offset 28*4
+   4. Call _tx_thread_context_save to save thread context
+   5. Call _tx_timer_interrupt to process the timer tick
+   6. Call _tx_thread_context_restore to resume execution (does not return)
 
-    /* Before calling _tx_thread_context_save, we have to allocate an interrupt
-       stack frame and save the current value of x1 (ra). */
+   Example (for CLINT timer):
 
-//#if defined(__riscv_float_abi_single) || defined(__riscv_float_abi_double)
-//    addi    sp, sp, -520                            // Allocate space for all registers - with floating point enabled
-//#else
-//    addi    sp, sp, -256                            // Allocate space for all registers - without floating point enabled
-//#endif
-//    sd      x1, 224(sp)                             // Store RA
-//    call    _tx_thread_context_save                 // Call ThreadX context save
+       _tx_timer_interrupt_handler:
+           addi    sp, sp, -32*4
+           sw      ra, 28*4(sp)
+           call    _tx_thread_context_save
+           call    _tx_timer_interrupt
+           j       _tx_thread_context_restore
 
-    /* Call the ThreadX timer routine.  */
-    call    _tx_timer_interrupt                     // Call timer interrupt handler
-    call    timer1_interrupt
-    ret
-
-    /* Timer interrupt processing is done, jump to ThreadX context restore.  */
-//    j       _tx_thread_context_restore              // Jump to ThreadX context restore function. Note: this does not return!
+   The port assumes Machine mode (M-mode) execution.
+   For Supervisor mode (S-mode), use sstatus and SIE/SPIE instead of mstatus.
+   See the RISC-V Privileged Specification for more details. */
