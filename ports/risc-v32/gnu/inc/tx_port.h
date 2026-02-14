@@ -277,4 +277,5 @@ CHAR                            _tx_version_id[] =
 #else
 extern  CHAR                    _tx_version_id[];
 #endif   /* TX_THREAD_INIT */
+#endif   /* __ASSEMBLER__ */ 
 #endif   /* TX_PORT_H */
