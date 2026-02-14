@@ -126,7 +126,7 @@ _tx_thread_system_return:
     sw      t0, 14*4(sp)                         // Save mstatus
 
 
-   /* Lockout interrupts. - will be enabled in _tx_thread_schedule  */
+   /* Lockout interrupts. will be enabled in _tx_thread_schedule  */
 
     csrci   mstatus, 0x08                        // Disable interrupts (MIE bit 3)
 
