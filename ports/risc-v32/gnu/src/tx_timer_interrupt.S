@@ -113,8 +113,8 @@ _tx_timer_no_time_slice:
     {  */
 
     la      t0, _tx_timer_current_ptr                   // Pickup address of current ptr
-    lw      t1, 0(t0)                                   // Pickup current pointer (double word)
-    lw      t3, 0(t1)                                   // Pickup the current timer entry (double word)
+    lw      t1, 0(t0)                                   // Pickup current pointer (word)
+    lw      t3, 0(t1)                                   // Pickup the current timer entry (word)
     la      t2, _tx_timer_expired                       // Pickup address of timer expired flag
     li      t4, 1                                       // Build TX_TRUE flag
     beqz    t3, _tx_timer_no_timer                      // If NULL, no timer has expired
@@ -140,7 +140,7 @@ _tx_timer_no_timer:
 
     la      t2, _tx_timer_list_end                      // Pickup address of list end pointer
     lw      t3, 0(t2)                                   // Pickup actual list end
-    addi    t1, t1, 8                                   // Point to next timer entry
+    addi    t1, t1, 4                                   // Point to next timer entry
     sw      t1, 0(t0)                                   // Store new timer pointer
     bne     t1, t3, _tx_timer_skip_wrap                 // If not same, good pointer
 
@@ -165,7 +165,7 @@ _tx_timer_done:
     beqz    t6, _tx_timer_nothing_expired               // If nothing expired skip the rest
     addi    sp, sp, -16                                 // Allocate some storage on the stack
     sw      t6, 0(sp)                                   // Save local expired flag
-    sw      ra, 8(sp)                                   // Save ra (8-byte aligned)
+    sw      ra, 4(sp)                                   // Save ra 
 
     /* Did a timer expire?  */
     /* if (_tx_timer_expired)
@@ -199,7 +199,7 @@ _tx_timer_dont_activate:
 
 _tx_timer_not_ts_expiration:
 
-    ld      ra, 8(sp)                                   // Recover ra
+    lw      ra, 4(sp)                                   // Recover ra
     addi    sp, sp, 16                                  // Recover stack space
     /* }  */
 
