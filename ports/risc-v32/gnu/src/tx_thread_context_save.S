@@ -85,20 +85,20 @@ _tx_thread_context_save:
        Save the rest of the scratch registers on the stack and return to the
        calling ISR.  */
 
-    sw      x7,  17*4(sp)                               // Store t2
-    sw      x8,  12*4(sp)                               // Store s0
-    sw      x10, 27*4(sp)                               // Store a0
-    sw      x11, 26*4(sp)                               // Store a1
-    sw      x12, 25*4(sp)                               // Store a2
-    sw      x13, 24*4(sp)                               // Store a3
-    sw      x14, 23*4(sp)                               // Store a4
-    sw      x15, 22*4(sp)                               // Store a5
-    sw      x16, 21*4(sp)                               // Store a6
-    sw      x17, 20*4(sp)                               // Store a7
-    sw      x28, 16*4(sp)                               // Store t3
-    sw      x29, 15*4(sp)                               // Store t4
-    sw      x30, 14*4(sp)                               // Store t5
-    sw      x31, 13*4(sp)                               // Store t6
+    sw      t2,  17*4(sp)                               // Store t2
+    sw      s0,  12*4(sp)                               // Store s0
+    sw      a0,  27*4(sp)                               // Store a0
+    sw      a1,  26*4(sp)                               // Store a1
+    sw      a2,  25*4(sp)                               // Store a2
+    sw      a3,  24*4(sp)                               // Store a3
+    sw      a4,  23*4(sp)                               // Store a4
+    sw      a5,  22*4(sp)                               // Store a5
+    sw      a6,  21*4(sp)                               // Store a6
+    sw      a7,  20*4(sp)                               // Store a7
+    sw      t3,  16*4(sp)                               // Store t3
+    sw      t4,  15*4(sp)                               // Store t4
+    sw      t5,  14*4(sp)                               // Store t5
+    sw      t6,  13*4(sp)                               // Store t6
     csrr    t0, mepc                                    // Load exception program counter
     sw      t0, 30*4(sp)                                // Save it on the stack
 
@@ -174,20 +174,20 @@ _tx_thread_not_nested_save:
 
     /* Save the standard scratch registers.  */
 
-    sw      x7,  17*4(sp)                               // Store t2
-    sw      x8,  12*4(sp)                               // Store s0
-    sw      x10, 27*4(sp)                               // Store a0
-    sw      x11, 26*4(sp)                               // Store a1
-    sw      x12, 25*4(sp)                               // Store a2
-    sw      x13, 24*4(sp)                               // Store a3
-    sw      x14, 23*4(sp)                               // Store a4
-    sw      x15, 22*4(sp)                               // Store a5
-    sw      x16, 21*4(sp)                               // Store a6
-    sw      x17, 20*4(sp)                               // Store a7
-    sw      x28, 16*4(sp)                               // Store t3
-    sw      x29, 15*4(sp)                               // Store t4
-    sw      x30, 14*4(sp)                               // Store t5
-    sw      x31, 13*4(sp)                               // Store t6
+    sw      t2,  17*4(sp)                               // Store t2
+    sw      s0,  12*4(sp)                               // Store s0
+    sw      a0,  27*4(sp)                               // Store a0
+    sw      a1,  26*4(sp)                               // Store a1
+    sw      a2,  25*4(sp)                               // Store a2
+    sw      a3,  24*4(sp)                               // Store a3
+    sw      a4,  23*4(sp)                               // Store a4
+    sw      a5,  22*4(sp)                               // Store a5
+    sw      a6,  21*4(sp)                               // Store a6
+    sw      a7,  20*4(sp)                               // Store a7
+    sw      t3,  16*4(sp)                               // Store t3
+    sw      t4,  15*4(sp)                               // Store t4
+    sw      t5,  14*4(sp)                               // Store t5
+    sw      t6,  13*4(sp)                               // Store t6
 
     csrr    t0, mepc                                    // Load exception program counter
     sw      t0, 30*4(sp)                                // Save it on the stack

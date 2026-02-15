@@ -109,19 +109,19 @@ _tx_thread_system_return:
 #endif
 
     sw      zero,  0(sp)                         // Solicited stack type
-    sw      x1,  13*4(sp)                        // Save RA
-    sw      x8,  12*4(sp)                        // Save s0
-    sw      x9,  11*4(sp)                        // Save s1
-    sw      x18, 10*4(sp)                        // Save s2
-    sw      x19,  9*4(sp)                        // Save s3
-    sw      x20,  8*4(sp)                        // Save s4
-    sw      x21,  7*4(sp)                        // Save s5
-    sw      x22,  6*4(sp)                        // Save s6
-    sw      x23,  5*4(sp)                        // Save s7
-    sw      x24,  4*4(sp)                        // Save s8
-    sw      x25,  3*4(sp)                        // Save s9
-    sw      x26,  2*4(sp)                        // Save s10
-    sw      x27,  1*4(sp)                        // Save s11
+    sw      ra,  13*4(sp)                        // Save RA
+    sw      s0,  12*4(sp)                        // Save s0
+    sw      s1,  11*4(sp)                        // Save s1
+    sw      s2,  10*4(sp)                        // Save s2
+    sw      s3,   9*4(sp)                        // Save s3
+    sw      s4,   8*4(sp)                        // Save s4
+    sw      s5,   7*4(sp)                        // Save s5
+    sw      s6,   6*4(sp)                        // Save s6
+    sw      s7,   5*4(sp)                        // Save s7
+    sw      s8,   4*4(sp)                        // Save s8
+    sw      s9,   3*4(sp)                        // Save s9
+    sw      s10,  2*4(sp)                        // Save s10
+    sw      s11,  1*4(sp)                        // Save s11
     csrr    t0, mstatus                          // Pickup mstatus
     sw      t0, 14*4(sp)                         // Save mstatus
 

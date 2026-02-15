@@ -225,34 +225,34 @@ _tx_thread_schedule_loop:
 #endif
     csrw    mstatus, t0                                 // Set mstatus
 
-    lw    x1,  28*4(sp)                                 // Recover return address
-    lw    x5,  19*4(sp)                                 // Recover t0
-    lw    x6,  18*4(sp)                                 // Recover t1
-    lw    x7,  17*4(sp)                                 // Recover t2
-    lw    x8,  12*4(sp)                                 // Recover s0
-    lw    x9,  11*4(sp)                                 // Recover s1
-    lw    x10, 27*4(sp)                                 // Recover a0
-    lw    x11, 26*4(sp)                                 // Recover a1
-    lw    x12, 25*4(sp)                                 // Recover a2
-    lw    x13, 24*4(sp)                                 // Recover a3
-    lw    x14, 23*4(sp)                                 // Recover a4
-    lw    x15, 22*4(sp)                                 // Recover a5
-    lw    x16, 21*4(sp)                                 // Recover a6
-    lw    x17, 20*4(sp)                                 // Recover a7
-    lw    x18, 10*4(sp)                                 // Recover s2
-    lw    x19,  9*4(sp)                                 // Recover s3
-    lw    x20,  8*4(sp)                                 // Recover s4
-    lw    x21,  7*4(sp)                                 // Recover s5
-    lw    x22,  6*4(sp)                                 // Recover s6
-    lw    x23,  5*4(sp)                                 // Recover s7
-    lw    x24,  4*4(sp)                                 // Recover s8
-    lw    x25,  3*4(sp)                                 // Recover s9
-    lw    x26,  2*4(sp)                                 // Recover s10
-    lw    x27,  1*4(sp)                                 // Recover s11
-    lw    x28, 16*4(sp)                                 // Recover t3
-    lw    x29, 15*4(sp)                                 // Recover t4
-    lw    x30, 14*4(sp)                                 // Recover t5
-    lw    x31, 13*4(sp)                                 // Recover t6
+    lw    ra,  28*4(sp)                                 // Recover return address
+    lw    t0,  19*4(sp)                                 // Recover t0
+    lw    t1,  18*4(sp)                                 // Recover t1
+    lw    t2,  17*4(sp)                                 // Recover t2
+    lw    s0,  12*4(sp)                                 // Recover s0
+    lw    s1,  11*4(sp)                                 // Recover s1
+    lw    a0,  27*4(sp)                                 // Recover a0
+    lw    a1,  26*4(sp)                                 // Recover a1
+    lw    a2,  25*4(sp)                                 // Recover a2
+    lw    a3,  24*4(sp)                                 // Recover a3
+    lw    a4,  23*4(sp)                                 // Recover a4
+    lw    a5,  22*4(sp)                                 // Recover a5
+    lw    a6,  21*4(sp)                                 // Recover a6
+    lw    a7,  20*4(sp)                                 // Recover a7
+    lw    s2,  10*4(sp)                                 // Recover s2
+    lw    s3,  9*4(sp)                                  // Recover s3
+    lw    s4,  8*4(sp)                                  // Recover s4
+    lw    s5,  7*4(sp)                                  // Recover s5
+    lw    s6,  6*4(sp)                                  // Recover s6
+    lw    s7,  5*4(sp)                                  // Recover s7
+    lw    s8,  4*4(sp)                                  // Recover s8
+    lw    s9,  3*4(sp)                                  // Recover s9
+    lw    s10, 2*4(sp)                                  // Recover s10
+    lw    s11, 1*4(sp)                                  // Recover s11
+    lw    t3,  16*4(sp)                                 // Recover t3
+    lw    t4,  15*4(sp)                                 // Recover t4
+    lw    t5,  14*4(sp)                                 // Recover t5
+    lw    t6,  13*4(sp)                                 // Recover t6
 
 #if defined(__riscv_float_abi_single) || defined(__riscv_float_abi_double)
     addi    sp, sp, 65*4                                // Recover stack frame - with floating point registers
@@ -298,19 +298,19 @@ _tx_thread_synch_return:
     /* Recover standard preserved registers.  */
     /* Recover standard registers.  */
 
-    lw    x1,  13*4(sp)                                // Recover RA
-    lw    x8,  12*4(sp)                                // Recover s0
-    lw    x9,  11*4(sp)                                // Recover s1
-    lw    x18, 10*4(sp)                                // Recover s2
-    lw    x19,  9*4(sp)                                // Recover s3
-    lw    x20,  8*4(sp)                                // Recover s4
-    lw    x21,  7*4(sp)                                // Recover s5
-    lw    x22,  6*4(sp)                                // Recover s6
-    lw    x23,  5*4(sp)                                // Recover s7
-    lw    x24,  4*4(sp)                                // Recover s8
-    lw    x25,  3*4(sp)                                // Recover s9
-    lw    x26,  2*4(sp)                                // Recover s10
-    lw    x27,  1*4(sp)                                // Recover s11
+    lw    ra,  13*4(sp)                                // Recover RA
+    lw    s0,  12*4(sp)                                // Recover s0
+    lw    s1,  11*4(sp)                                // Recover s1
+    lw    s2,  10*4(sp)                                // Recover s2
+    lw    s3,  9*4(sp)                                 // Recover s3
+    lw    s4,  8*4(sp)                                 // Recover s4
+    lw    s5,  7*4(sp)                                 // Recover s5
+    lw    s6,  6*4(sp)                                 // Recover s6
+    lw    s7,  5*4(sp)                                 // Recover s7
+    lw    s8,  4*4(sp)                                 // Recover s8
+    lw    s9,  3*4(sp)                                 // Recover s9
+    lw    s10,  2*4(sp)                                // Recover s10
+    lw    s11,  1*4(sp)                                // Recover s11
     lw    t0,  14*4(sp)                                // Recover mstatus
     csrw  mstatus, t0                                  // Store mstatus, enables interrupt
 #if defined(__riscv_float_abi_single) || defined(__riscv_float_abi_double)
